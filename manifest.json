@@ -1,0 +1,34 @@
+{
+    "name": "Content Grabber",
+    "version": "1.0",
+    "author" : "Meet Panchal",
+    "description": "Content Grabber Extension",
+    "options_page": "html/options.html",
+    "permissions": ["webRequest", "activeTab", "tabs", "storage","*://*/*"],
+    "browser_action":{
+        "default_popup" : "html/popup.html",
+        "default_icon": {
+            "16": "images/icon16.png",
+            "32": "images/icon32.png",
+            "48": "images/icon48.png",
+            "128": "images/icon128.png"
+          },
+        "default_title" : "Website Content Grabber"
+    },
+    "background": {
+        "scripts": ["js/background.js"],
+        "persistent": true
+    },
+    "content_scripts": [{
+        "matches": ["*://*/*"],
+        "js": ["libs/jquery-3.4.1.js","content_script/content.js"],
+        "run_at": "document_end"
+    }],
+    "icons": {
+        "16": "images/icon16.png",
+        "32": "images/icon32.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+      },
+    "manifest_version": 2
+}
