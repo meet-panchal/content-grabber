@@ -1,0 +1,9 @@
+#enteredURL {
+    border: none
+}
+
+.cust_jumbotron {
+    width: 500px;
+    height: 295px;
+    background-color: lightcyan;
+}
