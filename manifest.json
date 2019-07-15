@@ -4,7 +4,7 @@
     "author": "Meet Panchal",
     "description": "Content Grabber Extension",
     "options_page": "html/options.html",
-    "permissions": ["activeTab", "tabs", "storage", "*://*/*"],
+    "permissions": ["activeTab", "tabs", "storage", "<all_urls>"],
     "browser_action": {
         "default_popup": "html/popup.html",
         "default_icon": {
@@ -20,9 +20,9 @@
         "persistent": false
     },
     "content_scripts": [{
-        "matches": ["*://*/*"],
-        "js": ["libs/jquery-3.4.1.js", "content_script/content.js", "js/popup.js"],
-        "run_at": "document_end"
+        "matches": ["<all_urls>"],
+        "js": ["libs/jquery-3.4.1.js", "content_script/content.js"],
+        "css":["css/content.css"]
     }],
     "icons": {
         "16": "images/icon16.png",
