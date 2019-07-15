@@ -4,8 +4,10 @@ chrome.runtime.onMessage.addListener(
             "from a content script:" + sender.tab.url :
             "from the extension");
         if (request.message == "collect-data-from-extension") {
-            datacollection()
-            sendResponse({ reply: "Data Collected" });
+            datacollection(function(data) {
+                sendResponse(data);
+            })
+
         }
     });
 var ifrmae_url = chrome.runtime.getURL("html/iframe.html");
@@ -30,7 +32,7 @@ function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
 
-function datacollection() {
+function datacollection(callback) {
     let images = document.getElementsByTagName("img");
     for (imgList of images) {
         images_arr.push(imgList.src)
@@ -39,14 +41,23 @@ function datacollection() {
     for (tagList of metaTag) {
         meta_arr.push(tagList.content)
     }
+    let anchorTag = document.getElementsByTagName("a");
+    for (anchorList of anchorTag) {
+        anchor_arr.push(anchorList.href)
+    }
 
     let title = window.location.host
-    console.log(images_arr);
-    console.log(meta_arr);
     website_details_arr.push({
         [title]: {
-            "image": images_arr,
-            "meta": meta_arr
+            "image-src": images_arr,
+            "meta-tags": meta_arr,
+            "anchor-tags": anchor_arr
         }
     })
+    console.log(website_details_arr)
+    localStorage['host'] = JSON.stringify(title)
+    var data = {};
+    data['data'] = website_details_arr;
+    data['host'] = title;
+    callback(data)
 }
