@@ -1,39 +1,52 @@
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      console.log(sender.tab ?
-                  "from a content script:" + sender.tab.url :
-                  "from the extension");
-      if (request.message == "collect-data"){
-        datacollection()
-        sendResponse({reply: "Data Collected"});
-      }
+        console.log(sender.tab ?
+            "from a content script:" + sender.tab.url :
+            "from the extension");
+        if (request.message == "collect-data-from-extension") {
+            datacollection()
+            sendResponse({ reply: "Data Collected" });
+        }
     });
-var urlHTML = `
-<div id="main-div" class="float1">
-<div class="cust_jumbotron text-center">
-    <div class="container">
-        <h1 class="display-4 center">Content Grabber!</h1>
-        <p class="lead">This extension will grab all the content from the entered URL below.</p>
-        <form>
-            <div class="form-group">
-                <label for="inputURL">Enter URL you wish to grab data</label>
-                <input type="url" class="form-control" id="enteredURL" aria-describedby="urlHelp" placeholder="https://url.example.com">
-            </div>
-        </form>
-    </div>
-    <button type="button" class="btn btn-dark" id="grab-button">Start the Grab!!</button>
-</div>
-</div>
+var ifrmae_url = chrome.runtime.getURL("html/iframe.html");
+var html = `
+<iframe src="${ifrmae_url}" class="float1">
+</iframe>
 `
+var isEmpty = 1;
+var website_details_arr = []
+var uiSettings = {
+    json_data: { "website_details": website_details_arr },
+    isEmpty: false
+};
+var images_arr = []
+var meta_arr = []
+var anchor_arr = []
+
+
 var overlay = $("body")
-//overlay.append(urlHTML)
+    // overlay.prepend(html)
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
 function datacollection() {
     let images = document.getElementsByTagName("img");
     for (imgList of images) {
-        console.log(imgList.src);
+        images_arr.push(imgList.src)
     }
     let metaTag = document.getElementsByTagName("meta");
-    for (imgList of metaTag) {
-        console.log(imgList.name);
+    for (tagList of metaTag) {
+        meta_arr.push(tagList.content)
     }
+
+    let title = window.location.host
+    console.log(images_arr);
+    console.log(meta_arr);
+    website_details_arr.push({
+        [title]: {
+            "image": images_arr,
+            "meta": meta_arr
+        }
+    })
 }
