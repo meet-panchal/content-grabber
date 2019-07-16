@@ -9,6 +9,13 @@ chrome.runtime.onMessage.addListener(
             })
 
         }
+        if (request.message == "collect-data-from-popup") {
+            datacollection(function(data) {
+                sendResponse(data);
+            })
+
+        }
+
     });
 var ifrmae_url = chrome.runtime.getURL("html/iframe.html");
 var html = `
@@ -28,6 +35,7 @@ var anchor_arr = []
 
 var overlay = $("body")
     // overlay.prepend(html)
+
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
