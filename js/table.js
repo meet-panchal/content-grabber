@@ -79,6 +79,8 @@ for (let key in data_arr) {
             node.className = "list-group-item";
             var img = document.createElement("img");
             img.src = element;
+            img.style.maxWidth = 599;
+            // img.style.maxHeight = 400;
             node.appendChild(img);
             document.getElementById("imglist").appendChild(node)
         }
