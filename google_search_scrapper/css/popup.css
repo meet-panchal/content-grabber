@@ -1,0 +1,16 @@
+.card{
+    width: 254px;
+    border-radius: 1%;
+    align-items: center;
+}
+button{
+    margin-top: 10px;
+}
+.center{
+    text-align: center;
+    display: flex;
+    justify-content:space-between; 
+}
+#grab-button{
+    margin-left: 5px;
+}

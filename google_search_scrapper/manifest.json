@@ -1,0 +1,23 @@
+{
+    "name": "Google Search Data Scrapper Extension",
+    "version": "1.0.0",
+    "description": "Google Search Data Scrapper Extension Desc",
+    "browser_action": {
+        "default_icon": {
+          },
+        "default_title": "Google Search Data Scrapper Extension Title",
+        "default_popup": "html/popup.html"
+    },
+    "icons": {
+    },
+    "background": {
+        "scripts": ["lib/jquery-3.4.1.js","js/background.js"]
+    },
+    "content_scripts": [{
+            "matches": ["https://www.google.com/*"],
+            "js": ["lib/jquery-3.4.1.js","content_script/content.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "manifest_version": 2
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/popup.css">
+</head>
+<body>
+    <!-- Bootstrap Card -->
+    <div class="card border-info" >
+        <div class="card-header">Google Search Result Grabber</div>
+        <div class="card-body text-info">
+            <h5 class="card-title">Enter topic to search</h5>
+            <input type="text" class="form-control" id="keyword" placeholder="Enter Keywords" autocomplete="off">
+            <div class="center">
+                <button type="button" class="btn btn-outline-info btn-inline" id="search-button">Search</button>
+                <button type="button" class="btn btn-outline-success btn-block" id="grab-button">Start Grab</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../lib/jquery-3.4.1.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/popper.min.js"></script>
+    <script src="../js/popup.js"></script>
+</body>
+</html>

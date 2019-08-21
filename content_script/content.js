@@ -7,16 +7,14 @@ chrome.runtime.onMessage.addListener(
             datacollection(function(data) {
                 sendResponse(data);
             })
-
         }
         if (request.message == "collect-data-from-popup") {
             datacollection(function(data) {
                 sendResponse(data);
             })
-
         }
-
-    });
+    }   
+);
 var ifrmae_url = chrome.runtime.getURL("html/iframe.html");
 var html = `
 <iframe src="${ifrmae_url}" class="float1">
