@@ -114,11 +114,6 @@ var myGoogleContent = {
 
 chrome.runtime.onMessage.addListener(myGoogleContent.onExtMessage);
 myGoogleContent.load();
-$(document).ready(function () {
-    setTimeout(function () {
-
-    }, 2000);
-});
 
 function sendMessage(msg, callbackfn) {
     if (callbackfn != null) {
